@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Storybook</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
+        #story-container {
+            width: 800px; /* Adjust as needed */
+            height: 600px; /* Adjust as needed */
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; /* Initially hide all pages */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade-in/out */
+        }
+
+        .page.active {
+            opacity: 1; /* Show the active page */
+        }
+
+        .page img {
+            max-width: 90%;
+            max-height: 70%;
+            margin-bottom: 20px;
+        }
+
+        .page h2 {
+            margin-top: 0;
+        }
+
+        #controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="story-container">
+        <div class="page active">  <img src="https://vedantu.com/seo/content-images/2262b019-d0ac-42f6-ae67-4278664f09f4.jpg" alt="Page 1 Image">
+            <h2>Page 1: The Beginning</h2>
+            <p>Once upon a time, there was a... (Once upon a time, in a dense forest, a lion lay sleeping beneath a large tree. A little mouse, who also lived in the forest, was playing nearby and accidentally ran across the lion’s nose. The lion woke up suddenly and caught the mouse in his powerful paws. The mouse, terrified, begged, “Please, forgive me, mighty lion! I didn’t mean to disturb you. I promise I will never do it again. Who knows, maybe I can help you someday!”)</p>
+        </div>
+        <div class="page active">
+            <img src="https://vedantu.com/seo/content-images/74070245-e1f8-4bed-93f3-a1afaa6a9ef7.jpg" alt="Page 2 Image">
+            <h2>Page 2: The Adventure</h2>
+            <p>Then, something exciting happened! (The lion, feeling kind-hearted, decided to release the mouse. He was amused by the thought that such a tiny creature could ever help the king of the jungle. After all, he was far too mighty for such a small animal to assist him.Days later, the lion was caught in a hunter’s net. Struggling, he roared loudly for help. The mouse, hearing the roar, rushed over to see what had happened. When she saw the lion trapped, she quickly began gnawing through the ropes of the net. Soon enough, the lion was free.The lion was grateful to the mouse and thanked her. The mouse, happy to have kept her promise, smiled and said, “You saved my life once, and now I’ve returned the favor. We are now friends for life.” From that day on, the lion and the mouse became the best of friends, living happily together in the forest. )</p>
+        </div>
+        <div class="page active">
+            <img src="https://vedantu.com/seo/content-images/b3bff812-2048-440e-93da-31e59d8b9094.jpg" alt="Page 3 Image">
+            <h2>Page 3: The Conclusion</h2>
+            <p>And so, they lived happily ever after. (In this heartwarming Lion and the Mouse story, a little mouse accidentally disturbs a lion while playing in the forest. The lion, angered at first, captures the mouse but then lets her go after hearing her plea for mercy. Later, when the lion is trapped in a hunter's net, the mouse comes to his rescue by gnawing through the ropes. The lion is freed, and the mouse proves that even small acts of kindness can make a huge difference. This story highlights the value of kindness and how it can create lasting friendships.)</p>
+        </div>
+        </div>
+
+    <div id="controls">
+        <button onclick="prevPage()">Previous Page</button>
+        <button onclick="nextPage()">Next Page</button>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+
+        function showPage(pageIndex) {
+            pages.forEach((page, index) => {
+                if (index === pageIndex) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+        }
+
+        function nextPage() {
+            currentPage = Math.min(currentPage + 1, pages.length - 1);
+            showPage(currentPage);
+        }
+
+        function prevPage() {
+            currentPage = Math.max(currentPage - 1, 0);
+            showPage(currentPage);
+        }
+
+        showPage(0); // Show the first page initially
+    </script>
+
+</body>
+</html>
